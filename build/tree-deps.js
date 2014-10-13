@@ -1,0 +1,1 @@
+modulex.config("requires",{"tree":["component/container","util","node","component/extension/content-box","xtemplate/runtime","component/extension/delegate-children","event-dom/gesture/tap"]});

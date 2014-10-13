@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+    <title>tree@1.0.0 demo</title>
+</head>
+<body>
+<h1 style="text-align: center">tree@1.0.0 demo</h1>
+<script src="/mx_modules/modulex-debug.js"></script>
+<script src="/mx_modules/ua-debug.js"></script>
+<script src="/mx_modules/feature-debug.js"></script>
+<script src="/mx_modules/meta.js"></script>
+<link rel='stylesheet' href='/build/tree/assets/dpl.css'/>
+<h1>KISSY Check Tree</h1>
+<a href="javascript:void(0)" id="expandAll" class="ks-button">展开全部</a>&nbsp;
+<a href="javascript:void(0)" id="collapseAll" class="ks-button">关闭全部</a>
+
+<div id="treeContainer" style="width: 200px;margin: 20px 0;">
+
+</div>
+<script>
+    var isBuild = location.href.indexOf('build') !== -1;
+    require.config({
+        base: '/mx_modules',
+        packages: {
+            'tree': {
+                filter: isBuild ? 'debug' : '',
+                base: isBuild ? '/build/tree' : '/lib/tree'
+            }
+        }
+    });
+    require("tree,node", function (Tree, $) {
+        var tree = new Tree.CheckTree({
+            content: "淘宝网",
+
+            expanded: true,
+            // showRootNode:false,
+            render: "#treeContainer"
+        });
+
+        var favorates = new Tree.CheckNode({
+
+            content: "收藏夹",
+            tree: tree
+        });
+
+        favorates.addChild(new Tree.CheckNode({
+
+            content: "收藏的宝贝"
+        }));
+
+        favorates.addChild(new Tree.CheckNode({
+
+            content: "收藏的店铺"
+        }));
+
+        tree.addChild(favorates);
+
+        tree.addChild(new Tree.CheckNode({
+
+            content: "我要买"
+        }));
+
+
+        var one = new Tree.CheckNode({
+
+            content: "我的淘宝",
+            tree: tree
+        });
+
+        one.addChild(new Tree.CheckNode({
+
+            content: "已买到的宝贝"
+        }));
+
+        one.addChild(new Tree.CheckNode({
+
+            content: "已卖出的宝贝"
+        }));
+
+        tree.addChild(one);
+
+        tree.render();
+
+
+        tree.on("click", function (e) {
+            console.log("action : " + e.target.get("content"));
+        });
+
+        $("#expandAll").on("click", function () {
+            tree.expandAll();
+        });
+
+        $("#collapseAll").on("click", function () {
+            tree.collapseAll();
+        });
+    });
+</script>
+</body>
+</html>
