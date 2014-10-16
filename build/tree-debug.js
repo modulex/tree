@@ -1,3 +1,8 @@
+/*
+Copyright 2014, modulex-tree@1.0.1
+MIT Licensed
+build time: Thu, 16 Oct 2014 08:02:39 GMT
+*/
 modulex.add("tree", ["component/extension/delegate-children","event-dom/gesture/tap","util","xtemplate/runtime","component/container","node","component/extension/content-box"], function(require, exports, module) {
 var componentExtensionDelegateChildren = require("component/extension/delegate-children");
 var eventDomGestureTap = require("event-dom/gesture/tap");
@@ -19,6 +24,7 @@ tree/check-tree
 */
 var treeXtplNode, treeTreeManager, treeXtplNodeRender, treeNode, treeCheckNode, treeCheckTree, treeControl, _tree_;
 treeXtplNode = function (exports) {
+  /*compiled by xtemplate#3.3.1*/
   var ret = exports = function node(undefined) {
     var t;
     var t0;
@@ -803,6 +809,7 @@ _tree_ = function (exports) {
   Tree.CheckNode = CheckNode;
   Tree.CheckTree = CheckTree;
   exports = Tree;
+  Tree.version = '1.0.1';
   return exports;
 }();
 module.exports = _tree_;
